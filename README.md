@@ -1,6 +1,8 @@
 # d3.tooltip
 ## Little Tooltip Helper for D3
 
+![d3.tooltip thumbnail](https://raw.githubusercontent.com/sebastian-meier/d3.tooltip/master/thum)b.png
+
 This is inspired by this block: http://bl.ocks.org/Caged/6476579 created by Justin Palmer (i just saw that it was updated earlier this year, so not sure if it is still inspired what you see at the url)
 
 ## Usage
