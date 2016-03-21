@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3.tooltip</title>
+    <link rel="stylesheet" href="../d3.tooltip.css">
+    <style>
+        body,html{
+            margin:0;
+            padding:0;
+            border:0;
+            font-family:Arial;
+        }
+    </style>
+</head>
+<body>
+    <svg id="svg" width="500" height="500"></svg>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js"></script>
+    <script type="text/javascript" src="../d3.tooltip.min.js"></script>
+    <script type="text/javascript">
+        var tooltip = d3_tooltip({fixedWidth:true});
+        d3.select('body').call(tooltip);
+
+        var data = [];
+        for(var i = 0; i<20; i++){
+            data.push({
+                x:(Math.random()*400+50),
+                y:(Math.random()*400+50)
+            });
+        }
+
+        var svg = d3.select("#svg");
+
+        var points = svg.selectAll("circle").data(data).enter().append("circle")
+            .attr('cx', function(d){return d.x;})
+            .attr('cy', function(d){return d.y;})
+            .attr('r', 4)
+            .on('mouseover', function(){
+                //Getting the data from the object
+                var o = d3.select(this);
+                var d = o.datum();
+
+                //Set content of tooltip
+				tooltip.content("<strong>"+Math.round(d.x)+"px / "+Math.round(d.y)+"px</strong><br />Really nice Tooltip.");
+
+                //This uses the center of the object for tooltip placement
+                tooltip.positionFromObj(o);
+
+				tooltip.show();
+            })
+            .on('mouseout', function(){
+                tooltip.hide();
+            });
+
+    </script>
+</body>
+</html>
